@@ -1,7 +1,5 @@
 import requests
-import json
 from pprint import pprint
-from termcolor import colored
 from sty import fg, ef, rs
 
 
