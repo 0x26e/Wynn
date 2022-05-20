@@ -92,8 +92,6 @@ def show_total_progress(stats):
     
     # Extra Info
     if additional_information:
-        print(f"{(fg(255, 192, 203) + 'Chests Found' + fg.rs):^46}|"
-              f" {stats['Chests Found']:>16,}")
         print(f"{(fg(255, 192, 203) + 'Mobs Killed' + fg.rs):^46}|"
               f" {stats['Mobs Killed']:>16,}")
         print(f"{(fg(255, 192, 203) + 'Blocks Walked' + fg.rs):^46}|"
@@ -128,7 +126,6 @@ account_total = {
     "Unique Raid Completions": 0,
     "Raid Completions": 0,
     "Mobs Killed": 0,
-    "Chests Found": 0,
     "Blocks Walked": 0,
 }
 class_totals = {}
@@ -184,7 +181,6 @@ for wynn_class in classes:
         "Unique Raid Completions": len(wynn_class["raids"]["list"]),
         "Raid Completions": raids_completed,
         "Mobs Killed": wynn_class["mobsKilled"],
-        "Chests Found": wynn_class["chestsFound"],
         "Blocks Walked": wynn_class["blocksWalked"] if wynn_class["blocksWalked"] > 0 else wynn_class["blocksWalked"] + 4294967296,
     }
 
