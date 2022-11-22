@@ -42,52 +42,52 @@ def color_percentage(color_value):
 def show_total_progress(stats):
     # Big ones
     print(
-        f"{(ef.bold + 'Total Level' + ef.rs):^61}| {stats['Level']:>7,} / {(max_total := max_stats['total'] * max_classes):>6,}  |"
+        f"{(ef.bold + 'Total Level' + ef.rs):^61}| {stats['Level']:>7,} / {(max_total := max_stats['total'] * max_characters):>6,}  |"
         f" {color_percentage(stats['Level'] / max_total)}")
-    print(f"{(ef.bold + 'Combat' + ef.rs):^61}| {stats['Combat']:>7,} / {(max_combat := max_stats['combat'] * max_classes):>6,}  |"
+    print(f"{(ef.bold + 'Combat' + ef.rs):^61}| {stats['Combat']:>7,} / {(max_combat := max_stats['combat'] * max_characters):>6,}  |"
           f" {color_percentage(stats['Combat'] / max_combat)}")
 
     # Profs
     for prof in ["Farming", "Fishing", "Mining", "Woodcutting"]:
         print(f"{(fg(197, 118, 246) + prof + fg.rs):^46}| {stats[prof]:>7,} /"
-              f" {(single_prof_level := max_stats['gathering'] * max_classes):>6,}  | {color_percentage(stats[prof] / single_prof_level)}")
+              f" {(single_prof_level := max_stats['gathering'] * max_characters):>6,}  | {color_percentage(stats[prof] / single_prof_level)}")
     
     for prof in ["Alchemism", "Armouring", "Cooking", "Jeweling", "Scribing", "Tailoring", "Weaponsmithing", "Woodworking"]:
         print(f"{(fg(197, 118, 246) + prof + fg.rs):^46}| {stats[prof]:>7,} /"
-              f" {(single_prof_level := max_stats['crafting'] * max_classes):>6,}  | {color_percentage(stats[prof] / single_prof_level)}")
+              f" {(single_prof_level := max_stats['crafting'] * max_characters):>6,}  | {color_percentage(stats[prof] / single_prof_level)}")
 
     # Quests
     print(f"{(fg(0, 150, 255) + 'Main Quests' + fg.rs):^44}| {stats['Quests']:>7,} /"
-          f" {(total_quests := 135 * max_classes):>6,}  |"
+          f" {(total_quests := 138 * max_characters):>6,}  |"
           f" {color_percentage(stats['Quests'] / total_quests)}")
     print(f"{(fg(0, 150, 255) + 'Slaying Mini-Quests' + fg.rs):^44}|"
-          f" {stats['Slaying Mini-Quests']:>7,} / {(total_slaying := max_classes * 29):>6}  |"
+          f" {stats['Slaying Mini-Quests']:>7,} / {(total_slaying := max_characters * 29):>6}  |"
           f" {color_percentage(stats['Slaying Mini-Quests'] / total_slaying)}")
     print(f"{(fg(0, 150, 255) + 'Gathering Mini-Quests' + fg.rs):^44}|"
-          f" {stats['Gathering Mini-Quests']:>7,} / {(total_gathering := 96 * max_classes):>6,}  |"
+          f" {stats['Gathering Mini-Quests']:>7,} / {(total_gathering := 96 * max_characters):>6,}  |"
           f" {color_percentage(stats['Gathering Mini-Quests'] / total_gathering)}")
 
     # # # Completionist
     print(f"{(fg(46, 204, 113) + 'Discoveries' + fg.rs):^45}|"
-          f" {stats['Discoveries']:>7,} / {(total_discoveries := (249 + 406) * max_classes):>6,}  |"
+          f" {stats['Discoveries']:>7,} / {(total_discoveries := (105 + 494) * max_characters):>6,}  |"
           f" {color_percentage(stats['Discoveries'] / total_discoveries)}")
     
     # Dungeons
     print(f"{(fg(46, 204, 113) + 'Unique Dungeons' + fg.rs):^45}|"
-          f" {stats['Unique Dungeon Completions']:>7,} / {(total_dungeons := max_classes * 17):>6,}  |"
+          f" {stats['Unique Dungeon Completions']:>7,} / {(total_dungeons := max_characters * 17):>6,}  |"
           f" {color_percentage(stats['Unique Dungeon Completions'] / total_dungeons)}")
     if five_completions:
         print(f"{(fg(46, 204, 113) + 'Dungeon Completions' + fg.rs):^45}|"
-              f" {stats['Dungeon Completions']:>7,} / {(five_dungeons := max_classes * 85):>6}  |"
+              f" {stats['Dungeon Completions']:>7,} / {(five_dungeons := max_characters * 85):>6}  |"
               f" {color_percentage(stats['Dungeon Completions'] / five_dungeons)}")
 
     # Raids
     print(f"{(fg(46, 204, 113) + 'Unique Raids' + fg.rs):^45}|"
-          f" {stats['Unique Raid Completions']:>7,} / {(total_raids := 3 * max_classes):>6,}  |"
+          f" {stats['Unique Raid Completions']:>7,} / {(total_raids := 3 * max_characters):>6,}  |"
           f" {color_percentage(stats['Unique Raid Completions'] / total_raids)}")
     if five_completions:
         print(f"{(fg(46, 204, 113) + 'Raid Completions' + fg.rs):^45}|"
-              f" {stats['Raid Completions']:>7,} / {(five_raids := max_classes * 15):>6}  |"
+              f" {stats['Raid Completions']:>7,} / {(five_raids := max_characters * 15):>6}  |"
               f" {color_percentage(stats['Raid Completions'] / five_raids)}")
     
     # Extra Info
@@ -98,9 +98,9 @@ def show_total_progress(stats):
               f" {stats['Blocks Walked']:>16,}")
 
 
-classes = resp["data"][0]["classes"]
+characters = resp["data"][0]["characters"]
 rank = resp["data"][0]['meta']['tag']['value']
-max_classes = {None: 6, "VIP": 9, "VIP+": 11, "HERO": 14, "CHAMPION": 14}[rank]
+max_characters = {None: 6, "VIP": 9, "VIP+": 11, "HERO": 14, "CHAMPION": 14}[rank]
 shamans = []
 account_total = {
     "Level": 0,
@@ -128,19 +128,19 @@ account_total = {
     "Mobs Killed": 0,
     "Blocks Walked": 0,
 }
-class_totals = {}
+char_totals = {}
 
-for wynn_class in classes:
+for char_uuid, wynn_char in characters.items():
 
     # Class link
-    cur_class = [wynn_class["name"],
-                 wynn_class["professions"]["combat"]["level"] + wynn_class["professions"]["combat"]["xp"] / 100]
+    cur_char = [char_uuid,
+                 wynn_char["professions"]["combat"]["level"] + wynn_char["professions"]["combat"]["xp"] / 100]
 
     # Quest sorting
     content_quests = 0
     slaying_quests = 0
     prof_quests = 0
-    for quest in wynn_class["quests"]["list"]:
+    for quest in wynn_char["quests"]["list"]:
         if "Mini-Quest - Gather" in quest:
             prof_quests += 1
         elif "Mini-Quest" in quest:
@@ -149,68 +149,68 @@ for wynn_class in classes:
             content_quests += 1
 
     dungeons_completed = 0
-    for dungeon in wynn_class["dungeons"]["list"]:
+    for dungeon in wynn_char["dungeons"]["list"]:
         dungeons_completed += min(dungeon["completed"], 5)
 
     raids_completed = 0
-    for raid in wynn_class["raids"]["list"]:
+    for raid in wynn_char["raids"]["list"]:
         raids_completed += min(raid["completed"], 5)
 
     # Class info
-    class_totals[wynn_class["name"]] = {
-        "Level": wynn_class["level"] + 12,
-        "Combat": wynn_class["professions"]["combat"]["level"],
-        "Farming": wynn_class["professions"]["farming"]["level"],
-        "Fishing": wynn_class["professions"]["fishing"]["level"],
-        "Mining": wynn_class["professions"]["mining"]["level"],
-        "Woodcutting": wynn_class["professions"]["woodcutting"]["level"],
-        "Alchemism": wynn_class["professions"]["alchemism"]["level"],
-        "Armouring": wynn_class["professions"]["armouring"]["level"],
-        "Cooking": wynn_class["professions"]["cooking"]["level"],
-        "Jeweling": wynn_class["professions"]["jeweling"]["level"],
-        "Scribing": wynn_class["professions"]["scribing"]["level"],
-        "Tailoring": wynn_class["professions"]["tailoring"]["level"],
-        "Weaponsmithing": wynn_class["professions"]["weaponsmithing"]["level"],
-        "Woodworking": wynn_class["professions"]["woodworking"]["level"],
+    char_totals[char_uuid] = {
+        "Level": wynn_char["level"] + 12,
+        "Combat": wynn_char["professions"]["combat"]["level"],
+        "Farming": wynn_char["professions"]["farming"]["level"],
+        "Fishing": wynn_char["professions"]["fishing"]["level"],
+        "Mining": wynn_char["professions"]["mining"]["level"],
+        "Woodcutting": wynn_char["professions"]["woodcutting"]["level"],
+        "Alchemism": wynn_char["professions"]["alchemism"]["level"],
+        "Armouring": wynn_char["professions"]["armouring"]["level"],
+        "Cooking": wynn_char["professions"]["cooking"]["level"],
+        "Jeweling": wynn_char["professions"]["jeweling"]["level"],
+        "Scribing": wynn_char["professions"]["scribing"]["level"],
+        "Tailoring": wynn_char["professions"]["tailoring"]["level"],
+        "Weaponsmithing": wynn_char["professions"]["weaponsmithing"]["level"],
+        "Woodworking": wynn_char["professions"]["woodworking"]["level"],
         "Quests": content_quests,
         "Slaying Mini-Quests": slaying_quests,
         "Gathering Mini-Quests": prof_quests,
-        "Discoveries": wynn_class["discoveries"],
-        "Unique Dungeon Completions": len(wynn_class["dungeons"]["list"]),
+        "Discoveries": wynn_char["discoveries"],
+        "Unique Dungeon Completions": len(wynn_char["dungeons"]["list"]),
         "Dungeon Completions": dungeons_completed,
-        "Unique Raid Completions": len(wynn_class["raids"]["list"]),
+        "Unique Raid Completions": len(wynn_char["raids"]["list"]),
         "Raid Completions": raids_completed,
-        "Mobs Killed": wynn_class["mobsKilled"],
-        "Blocks Walked": wynn_class["blocksWalked"] if wynn_class["blocksWalked"] > 0 else wynn_class["blocksWalked"] + 4294967296,
+        "Mobs Killed": wynn_char["mobsKilled"],
+        "Blocks Walked": wynn_char["blocksWalked"] if wynn_char["blocksWalked"] > 0 else wynn_char["blocksWalked"] + 4294967296,
     }
 
     if enforce_limits:
-        class_totals[wynn_class["name"]]["Discoveries"] = min(class_totals[wynn_class["name"]]["Discoveries"], 655)
+        char_totals[char_uuid]["Discoveries"] = min(char_totals[char_uuid]["Discoveries"], 655)
     
     if max_useful:
         # Total
-        class_totals[wynn_class["name"]]["Level"] = min(class_totals[wynn_class["name"]]["Level"], 1369)
+        char_totals[char_uuid]["Level"] = min(char_totals[char_uuid]["Level"], 1369)
         # Combat
-        class_totals[wynn_class["name"]]["Combat"] = min(class_totals[wynn_class["name"]]["Combat"], 105)
+        char_totals[char_uuid]["Combat"] = min(char_totals[char_uuid]["Combat"], 105)
         # Gatherings
         for prof in ["Farming", "Fishing", "Mining", "Woodcutting"]:
-            class_totals[wynn_class["name"]][prof] = min(class_totals[wynn_class["name"]][prof], 110)
+            char_totals[char_uuid][prof] = min(char_totals[char_uuid][prof], 110)
         # Craftings
         for prof in ["Alchemism", "Armouring", "Cooking", "Jeweling", "Scribing", "Tailoring", "Weaponsmithing", "Woodworking"]:
-            class_totals[wynn_class["name"]][prof] = min(class_totals[wynn_class["name"]][prof], 103)
+            char_totals[char_uuid][prof] = min(char_totals[char_uuid][prof], 103)
         
 
     # Add values to total
     for key, value in account_total.items():
-        account_total[key] = value + class_totals[wynn_class["name"]][key]
+        account_total[key] = value + char_totals[char_uuid][key]
 
     # Append to account list
-    shamans.append(tuple(cur_class))
+    shamans.append(tuple(cur_char))
 
 shamans.sort(key=lambda x: -x[1])
 
-# Shows order of your classes id sorted by combat xp 
-# pprint(shamans)
+# Shows order of your characters id sorted by combat xp 
+pprint(shamans)
 
 # Header
 print(f"""{f"{ef.bold + ef.u}{resp['data'][0]['username']}'s Road to {'Completionist' if not max_useful else 'Max Useful'}{ef.rs}":^96}\n""")
